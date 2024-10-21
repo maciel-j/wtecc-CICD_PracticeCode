@@ -1,0 +1,5 @@
+    1  gh auth login
+    2  ls
+    3  git config --global user.email "jose.s.maciel@outlook.com" && git config --global user.name "maciel-j" && git clone https://github.com/maciel-j/wtecc-CICD_PracticeCode.git && cd wtecc-CICD_PracticeCode
+    4  git config --list
+    5  history >> history.txt
