@@ -9,6 +9,7 @@ spec:
     - name: repo-url
     - name: branch
       default: master
+    - name: build-image
   tasks:
     - name: init
       workspaces:
@@ -58,13 +59,18 @@ spec:
         - lint
 
     - name: build
-      taskRef:
-        name: echo
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
+      taskRef:     
+        name: buildah
+        kind: ClusterTask
       params:
-      - name: message
-        value: "Building image for $(params.repo-url) ..."
+      - name: IMAGE
+        value: "$(params.build-image)"
       runAfter:
         - tests
+
 
     - name: deploy
       taskRef:
