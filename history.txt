@@ -3,3 +3,20 @@
     3  git config --global user.email "jose.s.maciel@outlook.com" && git config --global user.name "maciel-j" && git clone https://github.com/maciel-j/wtecc-CICD_PracticeCode.git && cd wtecc-CICD_PracticeCode
     4  git config --list
     5  history >> history.txt
+-----------------------------------------------------------------------------------------------------------------------
+    1  mkdir lab02
+    2  docker network create mynet
+    3  docker run --name postgres  -e POSTGRES_USER=root -e POSTGRES_PASSWORD=Test12345  -p 5432:5432 --network mynet -d postgres
+    4  cd lab02/
+    5  docker run -d --name sonarqube -p 9000:9000 -e sonar.jdbc.url=jdbc:postgresql://postgres/postgres -e sonar.jdbc.username=root -e sonar.jdbc.password=Test12345 --network mynet sonarqube
+    6  docker ps
+    7  docker logs ddae071ad5d1
+    8  docker logs 2e319b60b954
+    9  cd ..
+   10  git config --global user.email "jose.s.maciel@outlook.com" && git config --global user.name "maciel-j" && git config --list && git clone https://github.com/maciel-j/wtecc-CICD_PracticeCode.git
+   11  cd wtecc-CICD_PracticeCode/
+   12  sonar-scanner   -Dsonar.projectKey=temp   -Dsonar.sources=.   -Dsonar.host.url=https://josesmaciel-9000.theiadocker-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai   -Dsonar.token=sqp_2013ff042c12974e5353a065d50895977c6a3247
+   13  docker pull sonarsource/sonar-scanner-cli
+   14  alias sonar-scanner='docker run --rm -v "$(pwd):/usr/src" sonarsource/sonar-scanner-cli'
+   15  sonar-scanner   -Dsonar.projectKey=temp   -Dsonar.sources=.   -Dsonar.host.url=https://josesmaciel-9000.theiadocker-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai   -Dsonar.token=sqp_2013ff042c12974e5353a065d50895977c6a3247
+   16  history >> history.txt 
